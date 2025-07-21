@@ -1,0 +1,21 @@
+.toolBarContainer {
+    background-color: rgb(33 33 33 / 51%);
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1.5rem;
+
+    .leftToolBarIconsDiv,
+    .rightToolBarIconsDiv {
+        display: flex;
+        gap: 2rem;
+
+        .toolBarIcons:hover {
+            stroke: #89e9c9;
+            cursor: pointer;
+        }
+    }
+}

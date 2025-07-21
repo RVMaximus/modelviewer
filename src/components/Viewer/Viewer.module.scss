@@ -1,0 +1,26 @@
+@use "../../styles/mixins" as *;
+
+.viewerDiv,
+.uploadButtonContainer {
+    width: 55vw;
+    border-right: 1px solid #343434;
+    height: 100%;
+
+    .viewerCanvas {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.uploadButtonContainer {
+    @include centerAlign(row);
+
+    .uploadButton {
+        @include centerAlign(row);
+        gap: 1rem;
+        border: 1px solid #343434;
+        padding: 1rem;
+        border-radius: 1rem;
+        cursor: pointer;
+    }
+}

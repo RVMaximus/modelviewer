@@ -1,0 +1,10 @@
+.viewerContainer{
+    height: 100vh;
+    .toolBarDiv{
+        height: 10vh;
+    }
+    .panelContainer{
+        height: 90vh;
+        display: flex;
+    }
+}
