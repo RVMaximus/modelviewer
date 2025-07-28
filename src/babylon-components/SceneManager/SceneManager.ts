@@ -1,4 +1,4 @@
-import { Scene, type Engine } from "babylonjs";
+import { Scene, type Engine } from "@babylonjs/core";
 
 class SceneManager {
   private scene: Scene | null = null;
@@ -12,10 +12,14 @@ class SceneManager {
   }
 
   public get Scene(): Scene | null {
-    if (!this.scene) {
-      throw new Error("Scene has not been created yet");
+    if (this.scene) {
+      return this.scene;
     }
-    return this.scene;
+    return null;
+  }
+
+  public disposeScene() {
+    this.scene?.dispose();
   }
 }
 

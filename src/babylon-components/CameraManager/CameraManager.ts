@@ -1,10 +1,4 @@
-import {
-  ArcRotateCamera,
-  FreeCamera,
-  UniversalCamera,
-  Vector3,
-  type Scene,
-} from "babylonjs";
+import { ArcRotateCamera, FreeCamera, UniversalCamera, Vector3, type Scene } from "@babylonjs/core";
 import { sceneManager } from "../SceneManager/SceneManager";
 
 class CameraManager {
@@ -30,13 +24,13 @@ class CameraManager {
     cameraConfig: Record<string, any>,
     scene: Scene
   ) {
-    const { name = "universalCamera", position = new Vector3(0, 0, -10) } =
+    const { name = "universalCamera", position = new Vector3(0, 0, -5) } =
       cameraConfig;
     return new UniversalCamera(name, position, scene);
   }
 
   private createFreeCamera(cameraConfig: Record<string, any>, scene: Scene) {
-    const { name = "freeCamera", position = new Vector3(0, 5, -10) } =
+    const { name = "freeCamera", position = new Vector3(0, 5, -5) } =
       cameraConfig;
     return new FreeCamera(name, position, scene);
   }

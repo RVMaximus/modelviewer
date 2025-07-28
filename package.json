@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babylonjs/core": "8.18.0",
+    "@babylonjs/loaders": "8.18.0",
     "@reduxjs/toolkit": "^2.8.2",
-    "babylonjs": "^8.17.0",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

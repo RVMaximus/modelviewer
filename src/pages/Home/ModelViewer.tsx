@@ -1,6 +1,5 @@
 import { ModelPropertyPanel } from "../../components/ModelPropertyPanel/ModelPropertyPanel";
 import { OptionsPanel } from "../../components/OptionsPanel/OptionsPanel";
-import { ScenePropertyPanel } from "../../components/ScenePropertyPanel/ScenePropertyPanel";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 import { Viewer } from "../../components/Viewer/Viewer";
 import styles from "./ModelViewer.module.scss";
@@ -16,7 +15,6 @@ export function ModelViewer() {
           <OptionsPanel />
           <ModelPropertyPanel />
           <Viewer />
-          <ScenePropertyPanel />
         </div>
       </div>
     </>

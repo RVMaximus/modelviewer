@@ -1,11 +1,4 @@
-import {
-  DirectionalLight,
-  HemisphericLight,
-  PointLight,
-  Scene,
-  SpotLight,
-  Vector3,
-} from "babylonjs";
+import { DirectionalLight, HemisphericLight, PointLight, SpotLight, Vector3, type Scene } from "@babylonjs/core";
 import { sceneManager } from "../SceneManager/SceneManager";
 
 class LightManager {

@@ -1,14 +1,27 @@
 @use "../../styles/mixins" as *;
 
 .viewerDiv,
-.uploadButtonContainer {
-    width: 55vw;
-    border-right: 1px solid #343434;
+.uploadButtonContainer,
+.loaderDiv {
+    width: 75vw;
     height: 100%;
 
     .viewerCanvas {
         height: 100%;
         width: 100%;
+    }
+
+    .viewerCanvas:focus {
+        outline: solid 1px grey
+    }
+}
+
+.loaderDiv {
+    @include centerAlign(row);
+
+    img {
+        width: 100px;
+        height: 100px
     }
 }
 
