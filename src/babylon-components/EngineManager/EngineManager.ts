@@ -12,7 +12,7 @@ class EngineManager {
       antialias: true
     });
     this.engine.setSize(window.innerWidth, window.innerHeight);
-    this.engine.setHardwareScalingLevel(1/ window.devicePixelRatio);
+    this.engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
   }
 
   public get Engine(): Engine | null {

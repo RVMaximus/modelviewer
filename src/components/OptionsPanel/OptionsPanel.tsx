@@ -1,38 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./OptionsPanel.module.scss";
-import { Box, Palette, Layers, AudioLines, Lightbulb, Camera, House } from "lucide-react";
+import { Box, Palette, House } from "lucide-react";
+import type { AppDispatch, RootState } from "../../redux/store";
+import { setCurrentOption } from "../../redux/slices/sceneSlice";
 
 export function OptionsPanel() {
+
+  const dispatch = useDispatch<AppDispatch>();
+  const currentOption = useSelector((state: RootState) => state.scene.currentOption);
+
   return (
     <>
       <div className={styles.optionsPanelContainer}>
-        <div title="Meshes">
-          <Box size={20} strokeWidth={1} className={styles.optionIcons} />
+        <div title="Meshes" onClick={() => dispatch(setCurrentOption("mesh"))}>
+          <Box size={30} strokeWidth={1} className={`${styles.optionIcons} ${currentOption === "mesh" ? styles.optionIconsActive : ""}`} />
         </div>
-        <div title="Materials">
-          <Palette size={20} strokeWidth={1} className={styles.optionIcons} />
+        <div title="Materials" onClick={() => dispatch(setCurrentOption("material"))}>
+          <Palette size={30} strokeWidth={1} className={`${styles.optionIcons} ${currentOption === "material" ? styles.optionIconsActive : ""}`} />
         </div>
-        <div title="Textures">
-          <Layers size={20} strokeWidth={1} className={styles.optionIcons} />
-        </div>
-        <div title="Sounds">
-          <AudioLines
-            size={20}
-            strokeWidth={1}
-            className={styles.optionIcons}
-          />
-        </div>
-        <div title="Lights">
-          <Lightbulb
-            size={20}
-            strokeWidth={1}
-            className={styles.optionIcons}
-          />
-        </div>
-        <div title="Cameras">
-          <Camera size={20} strokeWidth={1} className={styles.optionIcons} />
-        </div>
-        <div title="Environments">
-          <House size={20} strokeWidth={1} className={styles.optionIcons} />
+        <div title="Environments" onClick={() => dispatch(setCurrentOption("environment"))}>
+          <House size={30} strokeWidth={1} className={`${styles.optionIcons} ${currentOption === "environment" ? styles.optionIconsActive : ""}`} />
         </div>
       </div>
     </>

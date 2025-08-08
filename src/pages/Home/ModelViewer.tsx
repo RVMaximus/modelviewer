@@ -1,4 +1,4 @@
-import { ModelPropertyPanel } from "../../components/ModelPropertyPanel/ModelPropertyPanel";
+import { PropertyPanel } from "../../components/PropertyPanel/PropertyPanel";
 import { OptionsPanel } from "../../components/OptionsPanel/OptionsPanel";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 import { Viewer } from "../../components/Viewer/Viewer";
@@ -13,7 +13,7 @@ export function ModelViewer() {
         </div>
         <div className={styles.panelContainer}>
           <OptionsPanel />
-          <ModelPropertyPanel />
+          <PropertyPanel />
           <Viewer />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Scene, type Engine } from "@babylonjs/core";
 
+
 class SceneManager {
   private scene: Scene | null = null;
 
@@ -9,6 +10,8 @@ class SceneManager {
     }
 
     this.scene = new Scene(engine);
+
+    console.log("Scene obj", this.scene);
   }
 
   public get Scene(): Scene | null {

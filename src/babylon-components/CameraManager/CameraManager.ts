@@ -41,8 +41,8 @@ class CameraManager {
   ) {
     const {
       name = "arcRotateCamera",
-      alpha = 0,
-      beta = 0,
+      alpha = Math.PI / 2,
+      beta = Math.PI / 4,
       radius = 10,
       target = new Vector3(0, 0, 0),
     } = cameraConfig;

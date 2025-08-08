@@ -1,39 +1,55 @@
 @use "../../styles/mixins" as *;
 
-.viewerDiv,
-.uploadButtonContainer,
-.loaderDiv {
+canvas {
+    z-index: 0; // make sure other DOM is not covering it
+}
+
+.modelViewerContainer {
     width: 75vw;
     height: 100%;
+    @include centerAlign(row);
 
-    .viewerCanvas {
+    .uploadButtonContainer {
+        .uploadButton {
+            @include centerAlign(row);
+            gap: 1rem;
+            border: 1px solid #343434;
+            padding: 1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+
+        .extensionSupport {
+            margin: 15px 0;
+        }
+    }
+
+    .loaderDiv {
+
+        img {
+            width: 100px;
+            height: 100px
+        }
+    }
+
+    .viewerDiv {
         height: 100%;
         width: 100%;
-    }
 
-    .viewerCanvas:focus {
-        outline: solid 1px grey
-    }
-}
+        .viewerCanvas {
+            height: 100%;
+            width: 100%;
+        }
 
-.loaderDiv {
-    @include centerAlign(row);
-
-    img {
-        width: 100px;
-        height: 100px
+        .viewerCanvas:focus {
+            outline: solid 1px grey
+        }
     }
 }
 
-.uploadButtonContainer {
-    @include centerAlign(row);
-
-    .uploadButton {
-        @include centerAlign(row);
-        gap: 1rem;
-        border: 1px solid #343434;
-        padding: 1rem;
-        border-radius: 1rem;
-        cursor: pointer;
-    }
+.toasterDiv {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    flex-direction: column;
 }

@@ -1,9 +1,12 @@
-.viewerContainer{
+.viewerContainer {
     height: 100vh;
-    .toolBarDiv{
+
+    .toolBarDiv {
         height: 10vh;
+        border-bottom: 1px solid #343434;
     }
-    .panelContainer{
+
+    .panelContainer {
         height: 90vh;
         display: flex;
     }

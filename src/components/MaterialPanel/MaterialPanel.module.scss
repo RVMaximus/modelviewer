@@ -1,0 +1,31 @@
+.materialPanelContainer {
+    max-height: 50%;
+    height: auto;
+    overflow-y: auto;
+
+    .materialHeader {
+        margin: 10px 0;
+    }
+
+    .materialName {
+        margin: 10px;
+        cursor: pointer;
+    }
+}
+
+.materialTypeContainer {
+    height: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 2rem 0;
+    gap: 10px;
+    overflow-y: auto;
+
+    .materialType {
+        height: 60px;
+        width: 60px;
+        border: 1px solid #6c6363;
+        border-radius: 10px;
+    }
+}

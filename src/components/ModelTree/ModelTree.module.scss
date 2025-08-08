@@ -1,0 +1,49 @@
+.modelTreeContainer {
+    font-family: "Segoe UI", sans-serif;
+    height: 100%;
+    overflow-y: auto;
+
+    .meshTreeHeader {
+        margin: 10px 0;
+    }
+}
+
+.rootList,
+.nestedList {
+    list-style-type: none;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.treeNode {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        background-color: #3c3c3c;
+    }
+}
+
+.selected {
+    background-color: #555;
+    font-weight: bold;
+}
+
+.expandToggle {
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    color: #aaa;
+    cursor: pointer;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.meshName {
+    flex: 1;
+}

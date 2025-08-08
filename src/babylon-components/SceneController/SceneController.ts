@@ -1,11 +1,20 @@
-import { PointerEventTypes } from "@babylonjs/core";
+import { AbstractMesh, Camera, Color4, HDRCubeTexture, Light, TransformNode } from "@babylonjs/core";
 import { cameraManager } from "../CameraManager/CameraManager";
 import { engineManager } from "../EngineManager/EngineManager";
 import { lightManager } from "../LightManager/LightManager";
 import { sceneManager } from "../SceneManager/SceneManager";
 
+export interface MeshNode {
+    mesh: AbstractMesh | TransformNode;
+    children: MeshNode[];
+}
 export class SceneController {
     private canvas: HTMLCanvasElement | null = null;
+    static activeCamera: Camera | null = null;
+    static activeLight: Light | null = null;
+    static activeModel: AbstractMesh | null = null;
+    static pickedMesh: AbstractMesh | null = null;
+    static modelTree: MeshNode | null = null;
 
     constructor() {
         this.canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
@@ -23,16 +32,13 @@ export class SceneController {
 
             if (!sceneManager.Scene) return;
 
-            const camera = cameraManager.createCamera("universalCamera", {});
-            if(!camera) return;
+            sceneManager.Scene.clearColor = new Color4(0.1, 0.1, 0.1, 1)
 
-            camera.attachControl(this.canvas, false);
-            camera.inputs.addMouseWheel();
-            camera.speed = 1;
+            this.setCamera();
 
-            lightManager.createLight("hemispheric", {})
+            this.setLight();
 
-            this.setMeshPick();
+            this.setDefaultEnvironment();
 
             engineManager.Engine.runRenderLoop(() => {
                 sceneManager.Scene?.render()
@@ -52,16 +58,38 @@ export class SceneController {
         sceneManager.disposeScene();
     }
 
-    private setMeshPick() {
-        if(!sceneManager.Scene) return;
-        sceneManager.Scene.onPointerObservable.add((pointerInfo) => {
-            if (pointerInfo.type == PointerEventTypes.POINTERPICK) {
-                const pickInfo = pointerInfo.pickInfo;
-                console.log("pickinfo", pickInfo);
-                if (pickInfo?.pickedMesh) {
-                    console.log("pickedMesh", pickInfo.pickedMesh)
-                }
-            }
-        })
+    static clearEdges() {
+        if (!SceneController.pickedMesh) return;
+        SceneController.pickedMesh?.disableEdgesRendering();
+    }
+
+    static enableEdges(mesh: AbstractMesh) {
+        mesh.enableEdgesRendering();
+        mesh.edgesWidth = 1;
+        mesh.edgesColor = new Color4(1, 0, 0, 0.5);
+    }
+
+    private setCamera() {
+        const camera = cameraManager.createCamera("universalCamera", {});
+        if (!camera) return;
+
+        camera.attachControl(this.canvas, false);
+        camera.inputs.addMouseWheel();
+        camera.speed = 0.5;
+
+        SceneController.activeCamera = camera;
+    }
+
+    private setLight() {
+        const light = lightManager.createLight("hemispheric", {});
+        if (!light) return;
+
+        SceneController.activeLight = light;
+    }
+
+    private setDefaultEnvironment() {
+        const hdrTexture = new HDRCubeTexture("./Afternoon.hdr", sceneManager.Scene!, 512);
+        sceneManager.Scene?.createDefaultSkybox(hdrTexture, false, 1000, 0, true);
+        sceneManager.Scene!.environmentIntensity = 0.5;
     }
 }

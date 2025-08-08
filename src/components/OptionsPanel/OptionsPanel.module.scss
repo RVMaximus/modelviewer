@@ -1,4 +1,4 @@
-.optionsPanelContainer{
+.optionsPanelContainer {
     width: 5vw;
     border-right: 1px solid #343434;
     height: 100%;
@@ -10,8 +10,12 @@
 
     padding: 2rem 0;
 
-    .optionIcons:hover{
+    .optionIcons:hover {
         stroke: #89e9c9;
         cursor: pointer;
+    }
+
+    .optionIconsActive {
+        stroke: #338a6d;
     }
 }
