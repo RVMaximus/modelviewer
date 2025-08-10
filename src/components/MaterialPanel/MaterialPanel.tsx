@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { sceneManager } from "../../babylon-components/SceneManager/SceneManager";
 import styles from "./MaterialPanel.module.scss";
-import { Color3, PBRMaterial, type Material } from "@babylonjs/core";
+import { StandardMaterial, type Material } from "@babylonjs/core";
 
-const materialList = ["Gold", "Silver", "Fabric", "Wood", "Glass", "Plastic"];
+const materialList = ["Gold", "Silver", "Bronze", "Fabric", "Wood", "Glass", "Plastic"];
 
 export function MaterialPanel() {
-    const [currentMaterial, setcurrentMaterial] = useState<Material>();
+    const [currentMaterial, setcurrentMaterial] = useState<Material | null>();
+    const [currentMatType, setCurrentMatType] = useState<String>();
 
     const applyMaterial = (material: Material) => {
+        setCurrentMatType("");
         setcurrentMaterial(material);
 
-        if (material instanceof PBRMaterial) {
-            material.albedoColor = Color3.FromHexString("#CC7E35");
-            material.roughness = 0.15;
-            material.metallic = 0.65
+        if (material.metadata && material.metadata.materialType) {
+            setCurrentMatType(material.metadata.materialType);
         }
+    }
+
+    const setMatType = (materialType: string) => {
+        setCurrentMatType(materialType);
+        currentMaterial!.metadata = { ...(currentMaterial!.metadata || {}), materialType: materialType }
     }
 
     const getMaterials = () => {
@@ -29,9 +34,9 @@ export function MaterialPanel() {
                     <h3 className={styles.materialHeader}>Materials</h3>
                     {
                         materials.map((material) => {
-                            if (material.name == "default material" || material.name == "skyBox") return;
+                            if (material.name == "default material" || material.name == "skyBox" || material instanceof StandardMaterial) return;
                             return (
-                                <p className={styles.materialName} onClick={() => applyMaterial(material)}>{material.name}</p>
+                                <p className={`${styles.materialName} ${material.name === currentMaterial?.name ? styles.active : ""}`} onClick={() => applyMaterial(material)}>{material.name}</p>
                             )
                         })
                     }
@@ -41,15 +46,15 @@ export function MaterialPanel() {
         else return <></>
     }
 
-    const renderMaterialProperties = () => {
+    const renderMaterialType = () => {
         return (
             <div className={styles.materialTypeContainer}>
                 {
                     materialList.map((material: string) => {
                         return (
                             <>
-                                <div className={styles.materialType}>
-
+                                <div className={styles.materialType} onClick={() => setMatType(material)}>
+                                    <img src={`${material}.jpg`} title={material} className={`${styles.materialThumbnail} ${(currentMaterial?.metadata.materialType || currentMatType) === material ? styles.active : ""}`} />
                                 </div>
                             </>
                         )
@@ -59,12 +64,38 @@ export function MaterialPanel() {
         )
     }
 
+    const renderMaterialProperties = () => {
+        return (
+            <>
+                <div className={styles.matFirstRow}>
+                    <div className={styles.colorProp}>
+                        <p>Color</p>
+                        <input type="color" />
+                    </div>
+                    <div className={styles.opacityProp}>
+                        <p>Opacity</p>
+                        <input type="number" />
+                    </div>
+                </div>
+                <div className={styles.matSecondRow}>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <div className={styles.materialPanelContainer}>
                 {getMaterials()}
             </div>
-            {currentMaterial ? renderMaterialProperties() : <></>}
+            {currentMaterial ? renderMaterialType() : <></>}
+            {currentMatType ? renderMaterialProperties() : <></>}
         </>
     )
 }

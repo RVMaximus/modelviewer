@@ -10,6 +10,12 @@
     .materialName {
         margin: 10px;
         cursor: pointer;
+        padding: 0 5px;
+    }
+
+    .active {
+        background-color: #555;
+        border-radius: 3px;
     }
 }
 
@@ -18,7 +24,7 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    margin: 2rem 0;
+    margin: 1rem 0;
     gap: 10px;
     overflow-y: auto;
 
@@ -27,5 +33,46 @@
         width: 60px;
         border: 1px solid #6c6363;
         border-radius: 10px;
+        overflow: hidden;
+
+        .materialThumbnail {
+            cursor: pointer;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+
+        .active {
+            border: 3px solid;
+        }
+    }
+}
+
+.matFirstRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .colorProp,
+    .opacityProp {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        input[type="color"] {
+            width: 30px;
+            height: 30px;
+            background: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    }
+
+    .opacityProp {
+        input[type="number"] {
+            width: 40px;
+            background-color: #555555;
+            border-radius: 5px;
+        }
     }
 }
