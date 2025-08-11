@@ -1,4 +1,4 @@
-import { GizmoManager, PositionGizmo, UtilityLayerRenderer } from "@babylonjs/core";
+import { GizmoManager, UtilityLayerRenderer } from "@babylonjs/core";
 import { sceneManager } from "../SceneManager/SceneManager";
 import { SceneController } from "../SceneController/SceneController";
 
