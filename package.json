@@ -12,7 +12,7 @@
   "dependencies": {
     "@babylonjs/core": "8.18.0",
     "@babylonjs/inspector": "^8.21.0",
-    "@babylonjs/loaders": "8.18.0",
+    "@babylonjs/loaders": "^8.18.0",
     "@reduxjs/toolkit": "^2.8.2",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
