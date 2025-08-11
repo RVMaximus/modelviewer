@@ -1,0 +1,23 @@
+.envContainer {
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+
+    .envDiv {
+        .hdriDiv {
+            cursor: pointer;
+
+            img {
+                border-radius: 15px;
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+@media(max-width: 1199px) {
+    .envDiv {
+        width: 85%;
+    }
+}

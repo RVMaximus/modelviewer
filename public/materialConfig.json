@@ -1,0 +1,51 @@
+[
+    {
+        "type": "Gold",
+        "color": "#FFD700",
+        "opacity": 1,
+        "metallic": 1,
+        "roughness": 0.3
+    },
+    {
+        "type": "Silver",
+        "color": "#C0C0C0",
+        "opacity": 1,
+        "metallic": 1,
+        "roughness": 0.2
+    },
+    {
+        "type": "Bronze",
+        "color": "#CD7F32",
+        "opacity": 1,
+        "metallic": 1,
+        "roughness": 0.4
+    },
+    {
+        "type": "Fabric",
+        "color": "#8B4513",
+        "opacity": 1,
+        "metallic": 0,
+        "roughness": 0.8
+    },
+    {
+        "type": "Wood",
+        "color": "#A0522D",
+        "opacity": 1,
+        "metallic": 0,
+        "roughness": 0.6
+    },
+    {
+        "type": "Glass",
+        "color": "#FFFFFF",
+        "opacity": 0.1,
+        "metallic": 0,
+        "roughness": 0
+    },
+    {
+        "type": "Plastic",
+        "color": "#FF0000",
+        "opacity": 1,
+        "metallic": 0,
+        "roughness": 0.4
+    }
+]

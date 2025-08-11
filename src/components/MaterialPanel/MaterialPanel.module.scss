@@ -20,7 +20,7 @@
 }
 
 .materialTypeContainer {
-    height: 25%;
+    max-height: 25%;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -74,5 +74,29 @@
             background-color: #555555;
             border-radius: 5px;
         }
+    }
+}
+
+.matSecondRow {
+    margin: 10px 0;
+
+    .metallicProp {
+        .metallicInput {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0;
+
+            input[type="range"] {
+                height: 2px;
+                accent-color: #c2b1ac;
+            }
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .materialPanelContainer {
+        max-height: 40%;
     }
 }

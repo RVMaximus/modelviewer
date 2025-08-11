@@ -1,7 +1,6 @@
 import { AbstractMesh, Camera, Color4, HDRCubeTexture, Light, TransformNode } from "@babylonjs/core";
 import { cameraManager } from "../CameraManager/CameraManager";
 import { engineManager } from "../EngineManager/EngineManager";
-import { lightManager } from "../LightManager/LightManager";
 import { sceneManager } from "../SceneManager/SceneManager";
 
 export interface MeshNode {
@@ -15,6 +14,7 @@ export class SceneController {
     static activeModel: AbstractMesh | null = null;
     static pickedMesh: AbstractMesh | null = null;
     static modelTree: MeshNode | null = null;
+    static skybox: any;
 
     constructor() {
         this.canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
@@ -22,6 +22,7 @@ export class SceneController {
 
     public initScene() {
         try {
+
             if (!this.canvas) return;
 
             engineManager.createEngine(this.canvas);
@@ -35,8 +36,6 @@ export class SceneController {
             sceneManager.Scene.clearColor = new Color4(0.1, 0.1, 0.1, 1)
 
             this.setCamera();
-
-            this.setLight();
 
             this.setDefaultEnvironment();
 
@@ -80,16 +79,24 @@ export class SceneController {
         SceneController.activeCamera = camera;
     }
 
-    private setLight() {
-        const light = lightManager.createLight("hemispheric", {});
-        if (!light) return;
+    private setDefaultEnvironment() {
+        const hdrTexture = new HDRCubeTexture("./Default.hdr", sceneManager.Scene!, 512);
+        const skyBox = sceneManager.Scene?.createDefaultSkybox(hdrTexture, true, 1000, 0, true);
+        skyBox!.name = "rvSkyBox";
 
-        SceneController.activeLight = light;
+        sceneManager.Scene!.environmentIntensity = 0.7;
     }
 
-    private setDefaultEnvironment() {
-        const hdrTexture = new HDRCubeTexture("./Afternoon.hdr", sceneManager.Scene!, 512);
-        sceneManager.Scene?.createDefaultSkybox(hdrTexture, false, 1000, 0, true);
-        sceneManager.Scene!.environmentIntensity = 0.5;
+    static setEnvironment(name: string, callBack?: any) {
+        sceneManager.Scene!.environmentTexture = null;
+        sceneManager.Scene?.getMeshByName("rvSkyBox")?.dispose();
+
+        const hdrTexture = new HDRCubeTexture(`${name}.hdr`, sceneManager.Scene!, 512);
+        const skyBox = sceneManager.Scene?.createDefaultSkybox(hdrTexture, true, 1000, 0, true);
+        skyBox!.name = "rvSkyBox";
+
+        sceneManager.Scene!.environmentIntensity = 0.7;
+
+        if (callBack) callBack();
     }
 }

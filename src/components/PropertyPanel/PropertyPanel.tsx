@@ -3,6 +3,7 @@ import { ModelTree } from "../ModelTree/ModelTree";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { MaterialPanel } from "../MaterialPanel/MaterialPanel";
+import { EnvironmentPanel } from "../EnvironmentPanel/EnvironmentPanel";
 
 export function PropertyPanel() {
   const renderModelTree = useSelector((state: RootState) => state.scene.renderMeshTree);
@@ -14,6 +15,8 @@ export function PropertyPanel() {
         return renderModelTree ? <ModelTree /> : <>No model loaded</>
       case "material":
         return renderModelTree ? <MaterialPanel /> : <>No material loaded</>
+      case "environment":
+        return renderModelTree ? <EnvironmentPanel /> : <>No model loaded</>
       default:
         return <ModelTree />;
     }
